@@ -1,17 +1,11 @@
 package com.co.indra.coinmarketcap.coins.model.entities;
 
-<<<<<<< Updated upstream
-import java.io.Serializable;
-
-public class Coin implements Serializable{
-=======
 import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 
 public class Coin implements Serializable{
 
     @Pattern(regexp = "[A-Z]{3}")
->>>>>>> Stashed changes
     private String idSymbolCoin;
     private String nameCoin;
     private String iconCoin;

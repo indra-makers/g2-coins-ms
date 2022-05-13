@@ -1,20 +1,8 @@
 package com.co.indra.coinmarketcap.coins.controllers;
 
-<<<<<<< Updated upstream
-import com.co.indra.coinmarketcap.coins.services.CoinService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RestController;
-
-@RestController
-public class CoinController {
-    @Autowired
-    private CoinService coinService;
-=======
 import com.co.indra.coinmarketcap.coins.model.entities.Coin;
 import com.co.indra.coinmarketcap.coins.services.CoinService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -32,8 +20,7 @@ public class CoinController {
     }
 
     @GetMapping
-    public List<Coin> getDeviceMeasures() {
+    public List<Coin> getAllCoins() {
         return coinService.listAllCoins();
     }
->>>>>>> Stashed changes
 }
