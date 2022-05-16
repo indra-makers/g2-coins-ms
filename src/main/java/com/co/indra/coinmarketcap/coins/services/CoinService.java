@@ -17,20 +17,18 @@ public class CoinService {
     private CoinRepository coinRepository;
 
     public void registerCoin(String idSymbolCoin, String nameCoin, String iconCoin) {
-        if(coinRepository.findCoinByIdSymbolCoin(idSymbolCoin).size() == 0) {
-            coinRepository.create(new Coin(idSymbolCoin, nameCoin, iconCoin));
-        }
-        else{
+        if(!coinRepository.findCoinByIdSymbolCoin(idSymbolCoin).isEmpty()) {
             throw new BusinessException(ErrorCodes.ID_SYMBOLCOIN_ALREDY_EXIST);
         }
+        coinRepository.create(new Coin(idSymbolCoin, nameCoin, iconCoin));
     }
 
     public List<Coin> listAllCoins() {
         return coinRepository.listAllCoins();
     }
 
-    public Page<Coin> listAllCoinsWithPage(Pageable pageable) {
-        Page<Coin> coin = coinRepository.listAllCoinsWithPage(pageable);
+    public Page<Coin> findAllCoinsPaged(Pageable pageable) {
+        Page<Coin> coin = coinRepository.findAllCoinsPaged(pageable);
         return coin;
     }
 

@@ -1,0 +1,9 @@
+INSERT INTO public.tbl_coins (id_symbolCoin, nameCoin, iconCoin) VALUES('AAA','Moneda1', 'www.image.com');
+INSERT INTO public.tbl_coins (id_symbolCoin, nameCoin, iconCoin) VALUES('BBB','Moneda2', 'www.image.com');
+INSERT INTO public.tbl_coins (id_symbolCoin, nameCoin, iconCoin) VALUES('CCC','Moneda3', 'www.image.com');
+INSERT INTO public.tbl_coins (id_symbolCoin, nameCoin, iconCoin) VALUES('DDD','Moneda4', 'www.image.com');
+INSERT INTO public.tbl_coins (id_symbolCoin, nameCoin, iconCoin) VALUES('ABC','Moneda5', 'www.image.com');
+INSERT INTO public.tbl_coins (id_symbolCoin, nameCoin, iconCoin) VALUES('ABD','Moneda6', 'www.image.com');
+INSERT INTO public.tbl_coins (id_symbolCoin, nameCoin, iconCoin) VALUES('ABE','Moneda7', 'www.image.com');
+INSERT INTO public.tbl_coins (id_symbolCoin, nameCoin, iconCoin) VALUES('ABF','Moneda8', 'www.image.com');
+INSERT INTO public.tbl_coins (id_symbolCoin, nameCoin, iconCoin) VALUES('ABG','Moneda9', 'www.image.com');
