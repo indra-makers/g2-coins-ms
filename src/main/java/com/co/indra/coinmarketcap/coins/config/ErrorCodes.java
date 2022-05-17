@@ -2,7 +2,8 @@ package com.co.indra.coinmarketcap.coins.config;
 
 public enum ErrorCodes {
     ID_SYMBOLCOIN_NOT_EXIST("Symbol Coin not exist", "001"),
-    INVALID_ID_DEVICE("Invalid category", "002");
+    ID_SYMBOLCOIN_ALREDY_EXIST("Symbol Coin alredy exist", "002"),
+    INVALID_ID_DEVICE("Invalid category", "003");
     String message;
     String code;
 

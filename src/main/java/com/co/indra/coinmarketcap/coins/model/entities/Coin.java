@@ -1,8 +1,11 @@
 package com.co.indra.coinmarketcap.coins.model.entities;
 
+import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 
 public class Coin implements Serializable{
+
+    @Pattern(regexp = "[A-Z]{3}")
     private String idSymbolCoin;
     private String nameCoin;
     private String iconCoin;
