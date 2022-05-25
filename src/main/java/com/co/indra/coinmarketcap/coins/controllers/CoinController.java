@@ -1,5 +1,6 @@
 package com.co.indra.coinmarketcap.coins.controllers;
 
+import com.co.indra.coinmarketcap.coins.config.Routes;
 import com.co.indra.coinmarketcap.coins.model.entities.Coin;
 import com.co.indra.coinmarketcap.coins.services.CoinService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/coins")
+@RequestMapping(Routes.COINS_PATH)
 public class CoinController {
     @Autowired
     private CoinService coinService;
@@ -34,7 +35,7 @@ public class CoinController {
      * @return Page of all coins in DB
      */
     @GetMapping
-    public Page<Coin> getAllCoinsPaged(@PageableDefault(page=1, size=2) Pageable pageable){
+    public Page<Coin> getAllCoinsPaged(@PageableDefault(page=0, size=2) Pageable pageable){
         return (Page<Coin>) coinService.findAllCoinsPaged((Pageable) pageable);
     }
 }

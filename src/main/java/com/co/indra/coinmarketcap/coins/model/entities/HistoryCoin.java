@@ -1,9 +1,11 @@
 package com.co.indra.coinmarketcap.coins.model.entities;
 
+import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 
 public class HistoryCoin implements Serializable {
     private Long idHistoryCoin;
+
     private String idSymbolCoin;
     private Long actualPrice;
     private Long variation24h;
