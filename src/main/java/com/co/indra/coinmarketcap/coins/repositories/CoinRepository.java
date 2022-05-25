@@ -68,6 +68,4 @@ public class CoinRepository {
         return new PageImpl<Coin>(coins, pageable, count());
     }
 
-
-
 }
