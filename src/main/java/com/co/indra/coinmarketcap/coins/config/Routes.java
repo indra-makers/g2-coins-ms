@@ -7,4 +7,6 @@ public class Routes {
 
     public static final String GET_HISTORY_COIN = "/{id_symbolCoinFK}";
 
+    public static final String PAGEABLE= "?page=0&size=2";
+
 }

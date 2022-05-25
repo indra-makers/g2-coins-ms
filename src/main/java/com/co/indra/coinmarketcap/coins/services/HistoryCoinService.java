@@ -26,7 +26,7 @@ public class HistoryCoinService {
         return historyCoinRepository.findHistoryCoinByIdSymbolCoin(idSymbolCoin);
     }
 
-    public Page<HistoryCoin> findAllHistoryCoinsPaged(Pageable pageable, String idSymbolCoin) {
+    public Page<HistoryCoin> findAllHistoryCoinsPaged(String idSymbolCoin, Pageable pageable) {
         if(coinRepository.findCoinByIdSymbolCoin(idSymbolCoin).isEmpty()){
             throw new BusinessException(ErrorCodes.ID_SYMBOLCOIN_NOT_EXIST);
         }

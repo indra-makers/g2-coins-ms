@@ -26,8 +26,8 @@ public class HistoryCoinController {
      * @return Page of all coins in DB
      */
     @GetMapping(Routes.GET_HISTORY_COIN)
-    public Page<HistoryCoin> getAllHistoryCoinsPaged(@PageableDefault(page=0, size=2) Pageable pageable, @PathVariable ("id_symbolCoinFK") String idSymbolCoin ){
-        return (Page<HistoryCoin>) historyCoinService.findAllHistoryCoinsPaged((Pageable) pageable, idSymbolCoin);
+    public Page<HistoryCoin> getAllHistoryCoinsPaged(@PathVariable ("id_symbolCoinFK") String idSymbolCoin , @PageableDefault(page=0, size=2) Pageable pageable){
+        return (Page<HistoryCoin>) historyCoinService.findAllHistoryCoinsPaged(idSymbolCoin,(Pageable) pageable);
     }
 
 
