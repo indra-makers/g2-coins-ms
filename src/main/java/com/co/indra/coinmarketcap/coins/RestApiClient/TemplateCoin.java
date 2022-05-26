@@ -17,5 +17,4 @@ public class TemplateCoin {
         coinRepository.create(restService.getCoinWithResponseHandling(nombreMoneda));
     }
 
-
 }
