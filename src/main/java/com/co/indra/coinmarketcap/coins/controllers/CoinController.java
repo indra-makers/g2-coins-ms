@@ -1,7 +1,10 @@
 package com.co.indra.coinmarketcap.coins.controllers;
 
+import com.co.indra.coinmarketcap.coins.config.Routes;
 import com.co.indra.coinmarketcap.coins.model.entities.Coin;
+import com.co.indra.coinmarketcap.coins.repositories.CoinApiRepository;
 import com.co.indra.coinmarketcap.coins.services.CoinService;
+import com.co.indra.coinmarketcap.coins.services.CoinApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,6 +18,12 @@ import javax.validation.Valid;
 public class CoinController {
     @Autowired
     private CoinService coinService;
+
+    @Autowired
+    private CoinApiService coinApiService;
+
+    @Autowired
+    private CoinApiRepository coinApiRepository;
 
     /**
      * http://localhost:8435/api/coins
@@ -37,4 +46,16 @@ public class CoinController {
     public Page<Coin> getAllCoinsPaged(@PageableDefault(page=1, size=2) Pageable pageable){
         return (Page<Coin>) coinService.findAllCoinsPaged((Pageable) pageable);
     }
+
+    /**
+     * http://localhost:8081/api/coins/{idSymbolCoin}
+     * GET coins/{idSymbolCoin}
+     */
+    @GetMapping(Routes.ID_SYMBOLCOIN_PATH)
+    public Coin getCoinByIdSymbolCoin(
+            @PathVariable("idSymbolCoin") String idSymbolCoin) {
+
+        return coinApiRepository.getCoinByIdSymbolCoin(idSymbolCoin);
+    }
+
 }
