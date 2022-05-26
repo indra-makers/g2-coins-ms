@@ -1,5 +1,6 @@
 package com.co.indra.coinmarketcap.coins.RestApiClient;
 
+import com.co.indra.coinmarketcap.coins.model.entities.Coin;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,15 +17,14 @@ public class RestService {
     }
 
 
-        public Coin getCoinWithResponseHandling(String nombreMoneda) {
+        public CoinApiExterna getCoinWithResponseHandling(String symbol) {
             String url = "https://api.coincap.io/v2/assets/{nombreMoneda}";
-            ResponseEntity<Coin> response = this.restTemplate.getForEntity(url, Coin.class, nombreMoneda);
+            ResponseEntity<CoinApiExterna> response = this.restTemplate.getForEntity(url, CoinApiExterna.class, symbol);
             if(response.getStatusCode() == HttpStatus.OK) {
                 return response.getBody();
             } else {
                 return null;
             }
         }
-
 
 }

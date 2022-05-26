@@ -1,5 +1,6 @@
 package com.co.indra.coinmarketcap.coins.controllers;
 
+import com.co.indra.coinmarketcap.coins.RestApiClient.CoinApiExterna;
 import com.co.indra.coinmarketcap.coins.model.entities.Coin;
 import com.co.indra.coinmarketcap.coins.services.CoinService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,4 +38,15 @@ public class CoinController {
     public Page<Coin> getAllCoinsPaged(@PageableDefault(page=1, size=2) Pageable pageable){
         return (Page<Coin>) coinService.findAllCoinsPaged((Pageable) pageable);
     }
+
+
+    @GetMapping("/{symbol}")
+    public CoinApiExterna getCoinBySymbolCoin(
+            @PathVariable("symbol") String symbol) {
+        return coinService.findCoinBySymbol(symbol);
+    }
+
+
+
+
 }
