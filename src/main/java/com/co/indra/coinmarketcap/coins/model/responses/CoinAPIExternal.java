@@ -1,6 +1,8 @@
 package com.co.indra.coinmarketcap.coins.model.responses;
 
-public class CoinAPIExternal {
+import java.io.Serializable;
+
+public class CoinAPIExternal implements Serializable {
         private String id;
         private int rank;
         private String symbol;

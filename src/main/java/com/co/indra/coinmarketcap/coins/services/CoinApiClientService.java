@@ -25,9 +25,7 @@ public class CoinApiClientService {
             throw new BusinessException(ErrorCodes.ID_SYMBOLCOIN_NOT_EXIST);
         }
         String nameCoin = coinRepository.findCoinByIdSymbolCoin(idSymbolCoin).get(0).getNameCoin();
-        CoinApiExternalSummary coinApiExternalSummary = new CoinApiExternalSummary((List<CoinAPIExternal>) coinApiClientRepository.getCoinInformationAPIExternalJSON(nameCoin));
-        List<CoinAPIExternal> coinAPIExternal = coinApiExternalSummary.getCoinAPIExternal();
-        Coin coin = new Coin(coinAPIExternal.get(0).getSymbol(), coinAPIExternal.get(0).getName(), coinAPIExternal.get(0).getExplorer());
-        return coin;
+        CoinApiExternalSummary coinApiExternalSummary = coinApiClientRepository.getCoinInformationAPIExternalJSON(nameCoin);
+        return new Coin(coinApiExternalSummary.getData().getSymbol(), coinApiExternalSummary.getData().getName(), coinApiExternalSummary.getData().getExplorer());
     }
 }
