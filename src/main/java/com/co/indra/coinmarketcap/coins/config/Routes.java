@@ -9,4 +9,8 @@ public class Routes {
 
     public static final String PAGEABLE= "?page=0&size=2";
 
+    public static final String COIN_CAP= "/coinCap";
+
+    public static final String GET_COIN_CAP_BY_SYMBOL= "/{idSymbolCoin}";
+
 }
