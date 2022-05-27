@@ -1,6 +1,8 @@
 package com.co.indra.coinmarketcap.coins.services;
 
-import com.co.indra.coinmarketcap.coins.RestApiClient.CoinApiExterna;
+import com.co.indra.coinmarketcap.coins.RestApiClient.Model.CoinApiExterna;
+import com.co.indra.coinmarketcap.coins.RestApiClient.Model.Data;
+import com.co.indra.coinmarketcap.coins.RestApiClient.Model.ListResponseBody;
 import com.co.indra.coinmarketcap.coins.RestApiClient.RestService;
 import com.co.indra.coinmarketcap.coins.config.ErrorCodes;
 import com.co.indra.coinmarketcap.coins.exceptions.BusinessException;
@@ -37,9 +39,36 @@ public class CoinService {
         return coin;
     }
 
-    public CoinApiExterna findCoinBySymbol(String symbol){
-        CoinApiExterna coinApiExterna = restService.getCoinWithResponseHandling(symbol);
-        return coinApiExterna;
+    public Data findCoinBySymbol(String symbol){
+        Data data = restService.getCoinWithResponseHandling(symbol);
+        return data;
+    }
+
+    public ListResponseBody getResponseBody(){
+        return restService.getListResponseBodyWithResponseHandling();
+    }
+
+    public Coin getCoinBySymbol(String symbol){
+        return restService.getCoinWithResponseHandlingBySymbol(symbol);
+    }
+
+    public Coin getCoinBySymbolofData(String symbol){
+        return restService.getCoinWithResponseHandlingBySymbol(symbol);
+    }
+
+    public Coin getCoinInListOfCoins(String symbol){
+        return buscarCoinInData(symbol, restService.getListResponseBodyWithResponseHandling().getData());
+    }
+
+    public Coin buscarCoinInData(String symbol, List<CoinApiExterna> coinApiExternaList) {
+        CoinApiExterna con=null;
+        for(int i=0; i<coinApiExternaList.size(); i++) {
+            con = coinApiExternaList.get(i);
+            if(con.getSymbol().equalsIgnoreCase(symbol)) {
+                return new Coin(con.getSymbol(), con.getName(), con.getExplorer());
+            }
+        }
+        return null;
     }
 
 }

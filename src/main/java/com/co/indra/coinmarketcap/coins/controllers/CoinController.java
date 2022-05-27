@@ -1,6 +1,8 @@
 package com.co.indra.coinmarketcap.coins.controllers;
 
-import com.co.indra.coinmarketcap.coins.RestApiClient.CoinApiExterna;
+import com.co.indra.coinmarketcap.coins.RestApiClient.Model.CoinApiExterna;
+import com.co.indra.coinmarketcap.coins.RestApiClient.Model.Data;
+import com.co.indra.coinmarketcap.coins.RestApiClient.Model.ListResponseBody;
 import com.co.indra.coinmarketcap.coins.model.entities.Coin;
 import com.co.indra.coinmarketcap.coins.services.CoinService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,11 +43,20 @@ public class CoinController {
 
 
     @GetMapping("/{symbol}")
-    public CoinApiExterna getCoinBySymbolCoin(
+    public Data getCoinBySymbolCoin(
             @PathVariable("symbol") String symbol) {
         return coinService.findCoinBySymbol(symbol);
     }
 
+    @GetMapping("/responseBody")
+    public ListResponseBody getResponseBody() {
+        return coinService.getResponseBody();
+    }
+
+    @GetMapping("/CoinBySymbol/{symbol}")
+    public Coin getCoinBySymbol(@PathVariable("symbol") String symbol) {
+        return coinService.getCoinInListOfCoins(symbol);
+    }
 
 
 
