@@ -2,6 +2,8 @@ package com.co.indra.coinmarketcap.coins.controllers;
 
 import com.co.indra.coinmarketcap.coins.config.Routes;
 import com.co.indra.coinmarketcap.coins.model.entities.Coin;
+import com.co.indra.coinmarketcap.coins.model.responses.CoinApiResponse;
+import com.co.indra.coinmarketcap.coins.model.responses.CoinListApi;
 import com.co.indra.coinmarketcap.coins.repositories.CoinApiRepository;
 import com.co.indra.coinmarketcap.coins.services.CoinService;
 import com.co.indra.coinmarketcap.coins.services.CoinApiService;
@@ -54,8 +56,13 @@ public class CoinController {
     @GetMapping(Routes.ID_SYMBOLCOIN_PATH)
     public Coin getCoinByIdSymbolCoin(
             @PathVariable("idSymbolCoin") String idSymbolCoin) {
-
         return coinApiRepository.getCoinByIdSymbolCoin(idSymbolCoin);
     }
+
+    @GetMapping(Routes.GET_ALL_COINS_API)
+    public CoinListApi getCoinsExternal(){
+        return coinApiRepository.getCoinsExternal();
+    }
+
 
 }
