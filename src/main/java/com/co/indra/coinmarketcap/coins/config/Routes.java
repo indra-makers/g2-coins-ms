@@ -8,5 +8,7 @@ public class Routes {
     public static final String GET_HISTORY_COIN = "/{id_symbolCoinFK}";
 
     public static final String PAGEABLE= "?page=0&size=2";
+    public static final String GET_ALL_COINS_APIEXTERNAL = "/getAllCoinsAPIExternal";
+    public static final String ID_COINS_PATH = "/{idSymbolCoin}";
 
 }
