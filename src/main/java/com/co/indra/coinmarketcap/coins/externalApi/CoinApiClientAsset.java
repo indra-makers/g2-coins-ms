@@ -1,33 +1,26 @@
 package com.co.indra.coinmarketcap.coins.externalApi;
 
-import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestTemplate;
+public class CoinApiClientAsset {
 
-import java.util.List;
-
-@Component
-public class CoinApiClient {
-
-    private List<CoinApi> data;
+    private CoinApi data;
 
     private Double timestamp;
 
-    public CoinApiClient() {
+    public CoinApiClientAsset() {
     }
 
-    public CoinApiClient(List<CoinApi> data, Double timestamp) {
+    public CoinApiClientAsset(CoinApi data, Double timestamp) {
         this.data = data;
         this.timestamp = timestamp;
     }
 
-    public List<CoinApi> getData() {
+    public CoinApi getData() {
         return data;
     }
 
-    public void setData(List<CoinApi> data) {
+    public void setData(CoinApi data) {
         this.data = data;
     }
-
 
     public Double getTimestamp() {
         return timestamp;

@@ -3,7 +3,8 @@ package com.co.indra.coinmarketcap.coins.services;
 import com.co.indra.coinmarketcap.coins.config.ErrorCodes;
 import com.co.indra.coinmarketcap.coins.exceptions.BusinessException;
 import com.co.indra.coinmarketcap.coins.externalApi.CoinApi;
-import com.co.indra.coinmarketcap.coins.externalApi.CoinApiClient;
+import com.co.indra.coinmarketcap.coins.externalApi.CoinApiClientAsset;
+import com.co.indra.coinmarketcap.coins.externalApi.CoinApiClientAssets;
 import com.co.indra.coinmarketcap.coins.externalApi.CoinCapClient;
 import com.co.indra.coinmarketcap.coins.model.entities.Coin;
 import com.co.indra.coinmarketcap.coins.repositories.CoinRepository;
@@ -24,7 +25,7 @@ public class CoinService {
     private CoinCapClient coinCapClient;
 
     public void registerCoin(String idSymbolCoin, String nameCoin, String iconCoin) {
-        if(!coinRepository.findCoinByIdSymbolCoin(idSymbolCoin).isEmpty()) {
+        if (!coinRepository.findCoinByIdSymbolCoin(idSymbolCoin).isEmpty()) {
             throw new BusinessException(ErrorCodes.ID_SYMBOLCOIN_ALREDY_EXIST);
         }
         coinRepository.create(new Coin(idSymbolCoin, nameCoin, iconCoin));
@@ -39,23 +40,19 @@ public class CoinService {
         return coin;
     }
 
-    public List<Coin> getAllCoins(){
-        CoinApiClient coinApiClient=coinCapClient.getPostsPlainJSON();
-        List<Coin> coins= new ArrayList<>();
-        for(CoinApi x: coinApiClient.getData()){
+    public List<Coin> getAllCoins() {
+        CoinApiClientAssets coinApiClientAssets = coinCapClient.getPostsPlainJSON();
+        List<Coin> coins = new ArrayList<>();
+        for (CoinApi x : coinApiClientAssets.getData()) {
             coins.add(new Coin(x.getSymbol(), x.getName(), x.getExplorer()));
         }
         return coins;
     }
 
-    public Coin getCoinBySymbol(String id){
-        CoinApiClient coinApiClient=coinCapClient.getPostsPlainJSON();
-        for(CoinApi x: coinApiClient.getData()){
-            if(x.getSymbol().equals(id)){
-                return new Coin(x.getSymbol(), x.getName(), x.getExplorer());
-            }
-        }
-        return null;
+
+    public Coin getCoinBySymbol(String symbol) {
+        CoinApiClientAsset coinApiClient = coinCapClient.getPostsPlainJSONByAsset(symbol);
+        return new Coin(coinApiClient.getData().getSymbol(), coinApiClient.getData().getName(), coinApiClient.getData().getExplorer());
     }
 
 }

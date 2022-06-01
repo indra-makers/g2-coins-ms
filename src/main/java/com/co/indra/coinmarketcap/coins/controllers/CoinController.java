@@ -1,7 +1,6 @@
 package com.co.indra.coinmarketcap.coins.controllers;
 
 import com.co.indra.coinmarketcap.coins.config.Routes;
-import com.co.indra.coinmarketcap.coins.externalApi.CoinApiClient;
 import com.co.indra.coinmarketcap.coins.model.entities.Coin;
 import com.co.indra.coinmarketcap.coins.services.CoinService;
 import org.springframework.beans.factory.annotation.Autowired;
