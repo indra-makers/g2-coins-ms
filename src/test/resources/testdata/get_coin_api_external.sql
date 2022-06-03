@@ -1,0 +1,1 @@
+INSERT INTO public.tbl_coins (id_symbolCoin, nameCoin, iconCoin) VALUES('BTC','bitcoin', 'www.image.com');
