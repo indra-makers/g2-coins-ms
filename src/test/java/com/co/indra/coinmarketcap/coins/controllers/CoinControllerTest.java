@@ -141,12 +141,11 @@ public class CoinControllerTest {
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders.get(Routes.COINS_PATH+Routes.ID_COINS_PATH, 12).contentType(MediaType.APPLICATION_JSON);
 
         MockHttpServletResponse response = mockMvc.perform(request).andReturn().getResponse();
-        Assertions.assertEquals(412, response.getStatus());
+        Assertions.assertEquals(404, response.getStatus());
 
         String textResponse = response.getContentAsString();
         ErrorResponse error = objectMapper.readValue(textResponse, ErrorResponse.class);
-        Assertions.assertEquals("Symbol Coin not exist", error.getMessage());
-        Assertions.assertEquals("001", error.getCode());
+        Assertions.assertEquals("idSymbolCoin not found", error.getMessage());
     }
 
 
