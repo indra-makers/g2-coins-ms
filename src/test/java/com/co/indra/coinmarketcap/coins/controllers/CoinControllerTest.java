@@ -104,6 +104,7 @@ public class CoinControllerTest {
     }
 
     @Test
+    @Sql("/testdata/get_coins.sql")
     public void getCoinInformationAPIExternalHappyPath() throws Exception {
         CoinApiExternalSummary mockedBody = new CoinApiExternalSummary(new CoinAPIExternal("bitcoin", 1, "BTC", "Bitcoin", 19056412.000, 21000000.000, 578381201943.855, 11833701208.211, 30351.002, 2.4318, 29926.389, "https://blockchain.info/"), 12344.654);
         ResponseEntity<CoinApiExternalSummary> entity = new ResponseEntity(mockedBody, HttpStatus.OK);
