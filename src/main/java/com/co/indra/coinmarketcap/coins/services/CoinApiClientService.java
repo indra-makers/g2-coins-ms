@@ -2,6 +2,7 @@ package com.co.indra.coinmarketcap.coins.services;
 
 import com.co.indra.coinmarketcap.coins.config.ErrorCodes;
 import com.co.indra.coinmarketcap.coins.exceptions.BusinessException;
+import com.co.indra.coinmarketcap.coins.exceptions.NotFoundException;
 import com.co.indra.coinmarketcap.coins.model.entities.Coin;
 import com.co.indra.coinmarketcap.coins.model.responses.CoinAPIExternal;
 import com.co.indra.coinmarketcap.coins.model.responses.CoinApiExternalSummary;
@@ -38,10 +39,10 @@ public class CoinApiClientService {
     }
 
     public Coin getCoinInformationAPIExternal(String idSymbolCoin){
-        CoinApiExternalSummary coinApiExternalSummary = coinApiClientRepository.getCoinInformationAPIExternalJSON(coinsMap.get(idSymbolCoin));
         if(coinRepository.findCoinByIdSymbolCoin(idSymbolCoin).isEmpty()) {
-            throw new BusinessException(ErrorCodes.ID_SYMBOLCOIN_NOT_EXIST);
+            throw new NotFoundException(ErrorCodes.ID_SYMBOLCOIN_NOT_FOUND.getMessage());
         }
-       return new Coin(coinApiExternalSummary.getData().getSymbol(), coinApiExternalSummary.getData().getName(), coinApiExternalSummary.getData().getExplorer());
+        CoinApiExternalSummary coinApiExternalSummary = coinApiClientRepository.getCoinInformationAPIExternalJSON(coinsMap.get(idSymbolCoin));
+        return new Coin(coinApiExternalSummary.getData().getSymbol(), coinApiExternalSummary.getData().getName(), coinApiExternalSummary.getData().getExplorer());
     }
 }

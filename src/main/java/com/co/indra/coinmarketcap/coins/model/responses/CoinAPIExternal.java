@@ -16,6 +16,21 @@ public class CoinAPIExternal implements Serializable {
         private Double vwap24Hr;
         private String explorer;
 
+    public CoinAPIExternal(String id, int rank, String symbol, String name, Double supply, Double maxSupply, Double marketCapUsd, Double volumeUsd24Hr, Double priceUsd, Double changePercent24Hr, Double vwap24Hr, String explorer) {
+        this.id = id;
+        this.rank = rank;
+        this.symbol = symbol;
+        this.name = name;
+        this.supply = supply;
+        this.maxSupply = maxSupply;
+        this.marketCapUsd = marketCapUsd;
+        this.volumeUsd24Hr = volumeUsd24Hr;
+        this.priceUsd = priceUsd;
+        this.changePercent24Hr = changePercent24Hr;
+        this.vwap24Hr = vwap24Hr;
+        this.explorer = explorer;
+    }
+
     public String getId() {
         return id;
     }
