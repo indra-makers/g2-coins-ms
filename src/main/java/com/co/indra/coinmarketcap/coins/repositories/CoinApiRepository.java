@@ -37,12 +37,12 @@ public class CoinApiRepository {
         return coinApiService.getAllCoins();
     }
     public Coin getCoinByIdSymbolCoin(String idSymbolCoin) {
-        CoinApiResponse coinApiResponse = coinApiService.getPostsPlainJSON(mapSymbol.get(idSymbolCoin));
 
         if(coinRepository.findCoinByIdSymbolCoin(idSymbolCoin).isEmpty()){
             throw new NotFoundException(ErrorCodes.ID_SYMBOLCOIN_NOT_EXIST.getMessage());
         }
 
+        CoinApiResponse coinApiResponse = coinApiService.getPostsPlainJSON(mapSymbol.get(idSymbolCoin));
         Coin coin = new Coin(coinApiResponse.getData().getSymbol(), coinApiResponse.getData().getName(), coinApiResponse.getData().getExplorer());
         return coin;
 
