@@ -7,3 +7,4 @@ INSERT INTO public.tbl_coins (id_symbolCoin, nameCoin, iconCoin) VALUES('ABD','M
 INSERT INTO public.tbl_coins (id_symbolCoin, nameCoin, iconCoin) VALUES('ABE','Moneda7', 'www.image.com');
 INSERT INTO public.tbl_coins (id_symbolCoin, nameCoin, iconCoin) VALUES('ABF','Moneda8', 'www.image.com');
 INSERT INTO public.tbl_coins (id_symbolCoin, nameCoin, iconCoin) VALUES('ABG','Moneda9', 'www.image.com');
+INSERT INTO public.tbl_coins (id_symbolCoin, nameCoin, iconCoin) VALUES('BTC','bitcoin', 'www.image.com');
