@@ -12,6 +12,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.websocket.server.PathParam;
 
 @RestController
 @RequestMapping("/coins")
@@ -58,6 +59,14 @@ public class CoinController {
         return coinService.getCoinInListOfCoins(symbol);
     }
 
+/*    @GetMapping("/CoinBySymbolMap/{symbol}")
+    public Coin getCoinBySymbolMap(@PathVariable("symbol") String symbol) {
+        return coinService.getCoinMap(symbol);
+    }*/
 
+    @GetMapping("/pruebaGetCoin/{symbol}")
+    public String getCoinBySymbolf(@PathVariable("symbol") String symbol) {
+        return coinService.pruebaGetCoin(symbol);
+    }
 
 }

@@ -1,5 +1,6 @@
 package com.co.indra.coinmarketcap.coins.controllers;
 
+import com.co.indra.coinmarketcap.coins.apiExterna.models.CoinApi;
 import com.co.indra.coinmarketcap.coins.config.Routes;
 import com.co.indra.coinmarketcap.coins.model.entities.Coin;
 import com.co.indra.coinmarketcap.coins.model.responses.ErrorResponse;
@@ -94,5 +95,44 @@ public class CoinControllerTest {
         Assertions.assertEquals(200, response.getStatus());
     }
 
+    @Test
+    public void getCoinApiExterna() throws Exception {
+        MockHttpServletRequestBuilder request = MockMvcRequestBuilders.get("coins/CoinBySymbol/{symbol}", "BTC").contentType(MediaType.APPLICATION_JSON);
+        MockHttpServletResponse response = mockMvc.perform(request).andReturn().getResponse();
+
+        Assertions.assertEquals(200,response.getStatus());
+        Coin coin = objectMapper.readValue(response.getContentAsString(), Coin.class);
+        Assertions.assertEquals("BTC",coin.getIdSymbolCoin());
+    }
+
+    @Test
+    public void getCoinNotExist() throws Exception {
+        MockHttpServletRequestBuilder request = MockMvcRequestBuilders.get("coins/CoinBySymbol/{symbol}", "ÑÑÑ").contentType(MediaType.APPLICATION_JSON);
+        MockHttpServletResponse response = mockMvc.perform(request).andReturn().getResponse();
+
+        Assertions.assertEquals(404,response.getStatus());
+    }
+
+    /*
+    @Test
+    @Sql("/testdata/get_assets.sql")
+    public void getAssetsEmptyAssetsPortfolioExists() throws Exception {
+        MockHttpServletRequestBuilder request = MockMvcRequestBuilders.get(Routes.PORTAFOLIO_PATH+
+                Routes.CREATE_ASSET_IN_PORTAFOLIO_BY_IDPORTAFOLIO_PATH,300).contentType(MediaType.APPLICATION_JSON);
+        MockHttpServletResponse response = mockMvc.perform(request).andReturn().getResponse();
+
+        Assertions.assertEquals(200,response.getStatus());
+    }
+
+    @Test
+    @Sql("/testdata/get_assets.sql")
+    public void getAssetsIdPortfolioBadParam() throws Exception {
+        MockHttpServletRequestBuilder request = MockMvcRequestBuilders.get(Routes.PORTAFOLIO_PATH+
+                Routes.CREATE_ASSET_IN_PORTAFOLIO_BY_IDPORTAFOLIO_PATH,"xyz").contentType(MediaType.APPLICATION_JSON);
+        MockHttpServletResponse response = mockMvc.perform(request).andReturn().getResponse();
+
+        Assertions.assertEquals(500,response.getStatus());
+    }
+*/
 
 }

@@ -4,6 +4,8 @@ import com.co.indra.coinmarketcap.coins.RestApiClient.Model.CoinApiExterna;
 import com.co.indra.coinmarketcap.coins.RestApiClient.Model.Data;
 import com.co.indra.coinmarketcap.coins.RestApiClient.Model.ListResponseBody;
 import com.co.indra.coinmarketcap.coins.RestApiClient.RestService;
+import com.co.indra.coinmarketcap.coins.apiExterna.models.CoinApi;
+import com.co.indra.coinmarketcap.coins.apiExterna.service.CoinApiService;
 import com.co.indra.coinmarketcap.coins.config.ErrorCodes;
 import com.co.indra.coinmarketcap.coins.exceptions.BusinessException;
 import com.co.indra.coinmarketcap.coins.model.entities.Coin;
@@ -13,7 +15,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class CoinService {
@@ -22,6 +26,10 @@ public class CoinService {
 
     @Autowired
     private RestService restService;
+
+    @Autowired
+    private CoinApiService coinApiService;
+
 
     public void registerCoin(String idSymbolCoin, String nameCoin, String iconCoin) {
         if(!coinRepository.findCoinByIdSymbolCoin(idSymbolCoin).isEmpty()) {
@@ -49,16 +57,24 @@ public class CoinService {
     }
 
     public Coin getCoinBySymbol(String symbol){
-        return restService.getCoinWithResponseHandlingBySymbol(symbol);
+        CoinApiExterna coinApiExterna =restService.getCoinWithResponseHandlingBySymbolOfCoin(symbol);
+        return new Coin();
     }
 
-    public Coin getCoinBySymbolofData(String symbol){
-        return restService.getCoinWithResponseHandlingBySymbol(symbol);
-    }
+//    public Coin getCoinBySymbolofData(String symbol){
+//        return new Coin(restService.getCoinWithResponseHandlingBySymbolOfCoin(symbol).getSymbol(), );
+//    }
 
     public Coin getCoinInListOfCoins(String symbol){
         return buscarCoinInData(symbol, restService.getListResponseBodyWithResponseHandling().getData());
     }
+
+/*    public Coin getCoinMap(String symbol){
+        Map<String, String> map = new HashMap<>();
+        map = restService.getCoinsIdAndSymbolMap();
+        Coin coin = restService.getCoinWithResponseHandling(String.valueOf(map.containsKey(symbol)));
+        return ;
+    }*/
 
     public Coin buscarCoinInData(String symbol, List<CoinApiExterna> coinApiExternaList) {
         CoinApiExterna con=null;
@@ -70,5 +86,18 @@ public class CoinService {
         }
         return null;
     }
+
+    public String pruebaGetCoin(String symbol){
+        CoinApi coinApi = coinApiService.obtenerCoin(symbol);
+
+        if(coinApi.getSymbol()=="BTC"){
+            return coinApi.getSymbol();
+        }else{
+            return "Otro Symbol";
+        }
+    }
+
+
+
 
 }
