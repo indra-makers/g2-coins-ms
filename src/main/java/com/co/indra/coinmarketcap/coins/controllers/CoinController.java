@@ -6,6 +6,7 @@ import com.co.indra.coinmarketcap.coins.model.responses.CoinListApiExternalSumma
 import com.co.indra.coinmarketcap.coins.services.CoinApiClientService;
 import com.co.indra.coinmarketcap.coins.services.CoinService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -59,5 +60,11 @@ public class CoinController {
     @GetMapping(Routes.GET_ALL_COINS_APIEXTERNAL)
     public CoinListApiExternalSummary getCoinsExternal(){
         return coinApiClientService.getCoinsExternal();
+    }
+
+    @GetMapping(Routes.ID_COINS_PRUEBA_PATH)
+    @Cacheable(value = "getCoinByName", cacheManager = "expire30Mins", key = "{#name}", unless = "#result == null")
+    public Coin getCoinByName(@PathVariable("name")String name){
+        return coinApiClientService.getCoinByName(name);
     }
 }

@@ -11,4 +11,8 @@ public class Routes {
     public static final String GET_ALL_COINS_APIEXTERNAL = "/getAllCoinsAPIExternal";
     public static final String ID_COINS_PATH = "/{idSymbolCoin}";
 
+    public static final String ID_COINS_PRUEBA_PATH = "prueba/{name}";
+
+
+
 }

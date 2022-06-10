@@ -3,6 +3,7 @@ package com.co.indra.coinmarketcap.coins.repositories;
 import com.co.indra.coinmarketcap.coins.model.responses.CoinApiExternalSummary;
 import com.co.indra.coinmarketcap.coins.model.responses.CoinListApiExternalSummary;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -20,8 +21,9 @@ public class CoinApiClientRepository {
         return this.restTemplate.getForObject(url, CoinListApiExternalSummary.class);
     }
 
-    public CoinApiExternalSummary getCoinInformationAPIExternalJSON(String id) {
-        String url = "https://api.coincap.io/v2/assets/" + id;
+    public CoinApiExternalSummary getCoinInformationAPIExternalJSON(String name) {
+        String url = "https://api.coincap.io/v2/assets/" + name;
         return this.restTemplate.getForObject(url, CoinApiExternalSummary.class);
     }
+
 }
