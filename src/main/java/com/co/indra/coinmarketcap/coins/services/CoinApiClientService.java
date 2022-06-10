@@ -45,4 +45,9 @@ public class CoinApiClientService {
         CoinApiExternalSummary coinApiExternalSummary = coinApiClientRepository.getCoinInformationAPIExternalJSON(coinsMap.get(idSymbolCoin));
         return new Coin(coinApiExternalSummary.getData().getSymbol(), coinApiExternalSummary.getData().getName(), coinApiExternalSummary.getData().getExplorer());
     }
+
+    public Coin getCoinByName(String name){
+        CoinApiExternalSummary coinApiExternalSummary=coinApiClientRepository.getCoinInformationAPIExternalJSON(name);
+        return new Coin(coinApiExternalSummary.getData().getSymbol(), coinApiExternalSummary.getData().getName(), coinApiExternalSummary.getData().getExplorer());
+    }
 }
